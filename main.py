@@ -20,8 +20,25 @@ class MainApp(QMainWindow):
         # Crear una gráfica 3D
         self.plot_3d()
 
-    def transformaciones():
-        
+    def transformaciones(theta, x, y, z):
+
+        rotx = np.array([[1, 0, 0, 0],
+                        [0, np.cos(theta), -np.sin(theta), 0],
+                        [0, np.sin(theta), np.cos(theta), 0],
+                        [0, 0, 0, 1]])
+        roty = np.array([[np.cos(theta), 0, np.sin(theta), 0],
+                        [0, 1, 0, 0],
+                        [-np.sin(theta), 0, np.cos(theta), 0],
+                        [0, 0, 0, 1]])
+        rotz = np.array([[np.cos(theta), -np.sin(theta), 0, 0],
+                         [np.sin(theta), np.cos(theta), 0, 0],
+                         [0, 0, 1, 0],
+                         [0, 0, 0, 1]])
+
+        tras = np.array[[1, 0, 0, x],
+                        [0, 1, 0, y],
+                        [0, 0, 1, z],
+                        [0, 0, 0, 1]]
         return []
 
     def plot_3d(self):
@@ -33,14 +50,14 @@ class MainApp(QMainWindow):
         y = np.linspace(-5, 5, 100)
 
         # Definir límites de los ejes
-        ax.set_xlim(-2, 2)
-        ax.set_ylim(-2, 2)
-        ax.set_zlim(-2, 2)
+        ax.set_xlim(-5, 5)
+        ax.set_ylim(-5, 5)
+        ax.set_zlim(-5, 5)
 
         # Sistema de coordenadas fijo
-        # ax.plot([-1, 1], [0, 0], [0, 0], 'r', label='X')
-        # ax.plot([0, 0], [-1, 1], [0, 0], 'g', label='Y')
-        # ax.plot([0, 0], [0, 0], [-1, 1], 'b', label='Z')
+        ax.quiver(0, 0, 0, 2, 0, 0, color='r', label='X')
+        ax.quiver(0, 0, 0, 0, 2, 0, color='g', label='Y')
+        ax.quiver(0, 0, 0, 0, 0, 2, color='b', label='Z')
 
         # Sistema de coordenadas móvil
         ax.quiver(0, 0, 0, 1, 0, 0, color='#beee3b', label='X\'')
