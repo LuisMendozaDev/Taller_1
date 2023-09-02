@@ -19,26 +19,35 @@ class MainApp(QMainWindow):
 
         # Crear una gráfica 3D
         self.plot_3d()
+        theta = self.get_theta()
+        x, y, z = self.get_traslation()
+        self.rotx = np.array([[1, 0, 0, 0],
+                              [0, np.cos(theta), -np.sin(theta), 0],
+                              [0, np.sin(theta), np.cos(theta), 0],
+                              [0, 0, 0, 1]])
+        self.roty = np.array([[np.cos(theta), 0, np.sin(theta), 0],
+                              [0, 1, 0, 0],
+                              [-np.sin(theta), 0, np.cos(theta), 0],
+                              [0, 0, 0, 1]])
+        self.rotz = np.array([[np.cos(theta), -np.sin(theta), 0, 0],
+                              [np.sin(theta), np.cos(theta), 0, 0],
+                              [0, 0, 1, 0],
+                              [0, 0, 0, 1]])
 
-    def transformaciones(theta, x, y, z):
+        self.tras = np.array[[1, 0, 0, x],
+                             [0, 1, 0, y],
+                             [0, 0, 1, z],
+                             [0, 0, 0, 1]]
 
-        rotx = np.array([[1, 0, 0, 0],
-                        [0, np.cos(theta), -np.sin(theta), 0],
-                        [0, np.sin(theta), np.cos(theta), 0],
-                        [0, 0, 0, 1]])
-        roty = np.array([[np.cos(theta), 0, np.sin(theta), 0],
-                        [0, 1, 0, 0],
-                        [-np.sin(theta), 0, np.cos(theta), 0],
-                        [0, 0, 0, 1]])
-        rotz = np.array([[np.cos(theta), -np.sin(theta), 0, 0],
-                         [np.sin(theta), np.cos(theta), 0, 0],
-                         [0, 0, 1, 0],
-                         [0, 0, 0, 1]])
+    def get_traslation():
+        return []
 
-        tras = np.array[[1, 0, 0, x],
-                        [0, 1, 0, y],
-                        [0, 0, 1, z],
-                        [0, 0, 0, 1]]
+    def get_theta(self):
+        theta = 1
+        return theta
+
+    def transformaciones(self):
+
         return []
 
     def plot_3d(self):
