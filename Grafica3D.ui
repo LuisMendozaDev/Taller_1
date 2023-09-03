@@ -476,7 +476,7 @@ QPushButton:hover{
 	color:#fff;</string>
                </property>
                <property name="text">
-                <string>COORDENADAS DEL ORIGEN</string>
+                <string>COORDENADAS DEL ORIGEN EJE MOVIL</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
