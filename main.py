@@ -15,13 +15,15 @@ class MainApp(QMainWindow):
         self.setWindowTitle("Gráfica 3D con PyQt5 y Matplotlib")
 
         self.A = np.identity(4)
-        self.B = np.identity(4)
         self.t_matrix = np.identity(4)
+
         self.fill_table()
         self.rd_fijo.setChecked(True)
 
         self.is_tras = False
         self.is_rot = False
+
+        self.vector = np.array([0, 0, 0, 1])
 
         self.iteration = 0
         self.trasx = 0
@@ -60,15 +62,53 @@ class MainApp(QMainWindow):
         self.canvas.figure.clear()
         self.plot_3d()
 
+    def set_zero(self):
+        self.A = np.identity(4)
+        self.iteration = 0
+        self.trasx = 0
+        self.trasy = 0
+        self.trasz = 0
+
+        self.rotx = 0
+        self.roty = 0
+        self.rotz = 0
+
+        self.theta_x = 0
+        self.theta_y = 0
+        self.theta_z = 0
+
+        self.rot_x.setValue(0)
+        self.rot_y.setValue(0)
+        self.rot_z.setValue(0)
+
+        self.tras_x.setValue(0)
+        self.tras_y.setValue(0)
+        self.tras_z.setValue(0)
+
+        self.spin_state(False)
+        self.rot_x.setDisabled(False)
+        self.rot_y.setDisabled(False)
+        self.rot_z.setDisabled(False)
+
     def fill_table(self):
         for i in range(4):
             for j in range(4):
                 self.matriz_trans.setItem(
-                    i, j,  QTableWidgetItem(str(self.t_matrix[i][j])))
+                    i, j,  QTableWidgetItem(str(round(self.t_matrix[i][j], 3))))
         self.matriz_trans.resizeColumnsToContents()
 
     def traslation(self):
         self.is_tras = True
+
+        self.trasx = self.tras_x.value()
+        self.trasy = self.tras_y.value()
+        self.trasz = self.tras_z.value()
+
+        self.tras = np.array([[1, 0, 0, self.trasx],
+                             [0, 1, 0, self.trasy],
+                             [0, 0, 1, self.trasz],
+                             [0, 0, 0, 1]])
+
         self.rot_x.setDisabled(True)
         self.rot_y.setDisabled(True)
         self.rot_z.setDisabled(True)
@@ -79,18 +119,17 @@ class MainApp(QMainWindow):
         self.tras_z.setDisabled(value)
 
     def reset(self):
-        self.rot_x.setValue(0)
-        self.rot_y.setValue(0)
-        self.rot_z.setValue(0)
-        self.spin_state(False)
-        self.rot_x.setDisabled(False)
-        self.rot_y.setDisabled(False)
-        self.rot_z.setDisabled(False)
+        self.canvas.figure.clear()
+        self.set_zero()
+        self.vector = np.array([0, 0, 0, 1])
         self.t_matrix = np.identity(4)
+        self.lb_mov.setText("MOVIMIENTO: " + str((self.iteration+1)))
         self.fill_table()
+        self.plot_3d()
 
     def get_rot_x(self, event):
         self.is_rot = True
+        self.is_tras = False
         self.theta_x = np.radians(event)
         self.lb_rotx.setText(str(event) + "°")
 
@@ -108,6 +147,7 @@ class MainApp(QMainWindow):
 
     def get_rot_y(self, event):
         self.is_rot = True
+        self.is_tras = False
         self.theta_y = np.radians(event)
         self.lb_roty.setText(str(event) + "°")
 
@@ -125,6 +165,7 @@ class MainApp(QMainWindow):
 
     def get_rot_z(self, event):
         self.is_rot = True
+        self.is_tras = False
         self.theta_z = np.radians(event)
         self.lb_rotz.setText(str(event) + "°")
 
@@ -144,55 +185,38 @@ class MainApp(QMainWindow):
     def calculate(self):
         self.canvas.figure.clear()
 
-        self.trasx = self.tras_x.value()
-        self.trasy = self.tras_y.value()
-        self.trasz = self.tras_z.value()
+        print(self.is_tras)
 
-        self.tras = np.array([[1, 0, 0, self.trasx],
-                             [0, 1, 0, self.trasy],
-                             [0, 0, 1, self.trasz],
-                             [0, 0, 0, 1]])
+        if (self.is_tras):
+            print("is tras")
+            self.A = self.tras
+        else:
+            print("is rot")
+            if (self.rot_x.isEnabled()):
+                self.A = self.rotx
+            elif (self.rot_y.isEnabled()):
+                self.A = self.roty
+            else:
+                self.A = self.rotz
 
-        if (self.iteration == 0):
-            if (self.is_tras):
-                self.A = self.tras
-            else:
-                if (self.rot_x.isEnabled()):
-                    self.A = self.rotx
-                elif (self.rot_y.isEnabled()):
-                    self.A = self.roty
-                else:
-                    self.A = self.rotz
-            print("A: ", self.A)
-        if (self.iteration == 1):
-            if (self.is_tras):
-                self.B = self.tras
-            else:
-                if (self.rot_x.isEnabled()):
-                    self.B = self.rotx
-                elif (self.rot_y.isEnabled()):
-                    self.B = self.roty
-                else:
-                    self.B = self.rotz
-            print("B: ", self.B)
-            if (self.rd_fijo.isChecked()):
-                self.t_matrix = self.B@self.A
-            else:
-                self.t_matrix = self.A@self.B
+        print(self.A)
+        print(self.is_tras)
+        if (self.rd_fijo.isChecked()):
+            self.t_matrix = self.A@self.t_matrix
+        else:
+            self.t_matrix = self.t_matrix@self.A
 
         self.rot_x.setDisabled(False)
         self.rot_y.setDisabled(False)
         self.rot_z.setDisabled(False)
 
         self.spin_state(False)
-        self.is_tras = False
-        self.is_rot = False
 
         self.iteration += 1
-        if (self.iteration == 2):
-            self.iteration = 0
+        self.lb_mov.setText("MOVIMIENTO: " + str((self.iteration+1)))
         self.fill_table()
         self.plot_3d()
+        self.set_zero()
 
     def plot_3d(self):
         fig = self.canvas.figure
@@ -208,13 +232,20 @@ class MainApp(QMainWindow):
         ax.quiver(0, 0, 0, 0, 2, 0, color='g', label='Y')
         ax.quiver(0, 0, 0, 0, 0, 2, color='b', label='Z')
 
+        # self.vector = self.A@self.vector
+        print("hola", self.is_tras)
+        x, y, z, scale = self.t_matrix@np.array([0,0,0,1])
+        u, v, w, scale = self.t_matrix@[1, 0, 0, 1]
+        _u, _v, _w, scale = self.t_matrix@[0, 1, 0, 1]
+        __u, __v, __w, scale = self.t_matrix@[0, 0, 1, 1]
+
+        print(u, " ", v, " ", w)
+        ax.quiver(0, 0, 0, x, y, z, color='#7e2f8e')
+
         # Sistema de coordenadas móvil
-        ax.quiver(self.trasx, self.trasy, self.trasz,
-                  1, 0, 0, color='#beee3b', label='X\'')
-        ax.quiver(self.trasx, self.trasy, self.trasz,
-                  0, 1, 0, color='#00c9d2', label='Y\'')
-        ax.quiver(self.trasx, self.trasy, self.trasz,
-                  0, 0, 1, color='#006465', label='Z\'')
+        ax.quiver(x, y, z, u-x, v-y, w-z, color='#beee3b', label='X\'')
+        ax.quiver(x, y, z, _u-x, _v-y, _w-z, color='#00c9d2', label='Y\'')
+        ax.quiver(x, y, z, __u-x, __v-y, __w-z, color='#006465', label='Z\'')
 
         ax.set_xlabel('X')
         ax.set_ylabel('Y')

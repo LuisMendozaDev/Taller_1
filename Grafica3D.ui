@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1089</width>
-    <height>623</height>
+    <height>679</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -84,7 +84,7 @@
             <x>10</x>
             <y>10</y>
             <width>421</width>
-            <height>331</height>
+            <height>411</height>
            </rect>
           </property>
           <property name="minimumSize">
@@ -103,7 +103,7 @@
            <property name="geometry">
             <rect>
              <x>111</x>
-             <y>90</y>
+             <y>150</y>
              <width>35</width>
              <height>18</height>
             </rect>
@@ -113,7 +113,7 @@
            <property name="geometry">
             <rect>
              <x>200</x>
-             <y>90</y>
+             <y>150</y>
              <width>35</width>
              <height>18</height>
             </rect>
@@ -123,7 +123,7 @@
            <property name="geometry">
             <rect>
              <x>290</x>
-             <y>90</y>
+             <y>150</y>
              <width>35</width>
              <height>18</height>
             </rect>
@@ -132,8 +132,8 @@
           <widget class="QGroupBox" name="groupBox">
            <property name="geometry">
             <rect>
-             <x>59</x>
-             <y>20</y>
+             <x>60</x>
+             <y>80</y>
              <width>321</width>
              <height>50</height>
             </rect>
@@ -158,24 +158,11 @@
             </item>
            </layout>
           </widget>
-          <widget class="QPushButton" name="bt_calcular">
-           <property name="geometry">
-            <rect>
-             <x>230</x>
-             <y>290</y>
-             <width>151</width>
-             <height>23</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>CALCULAR</string>
-           </property>
-          </widget>
           <widget class="QLabel" name="lb_rotx">
            <property name="geometry">
             <rect>
              <x>310</x>
-             <y>120</y>
+             <y>180</y>
              <width>31</width>
              <height>16</height>
             </rect>
@@ -188,7 +175,7 @@
            <property name="geometry">
             <rect>
              <x>60</x>
-             <y>140</y>
+             <y>200</y>
              <width>321</width>
              <height>22</height>
             </rect>
@@ -207,7 +194,7 @@
            <property name="geometry">
             <rect>
              <x>60</x>
-             <y>190</y>
+             <y>250</y>
              <width>321</width>
              <height>22</height>
             </rect>
@@ -226,7 +213,7 @@
            <property name="geometry">
             <rect>
              <x>60</x>
-             <y>240</y>
+             <y>300</y>
              <width>321</width>
              <height>22</height>
             </rect>
@@ -241,24 +228,11 @@
             <enum>Qt::Horizontal</enum>
            </property>
           </widget>
-          <widget class="QPushButton" name="bt_reset">
-           <property name="geometry">
-            <rect>
-             <x>60</x>
-             <y>290</y>
-             <width>151</width>
-             <height>23</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>REINICIAR</string>
-           </property>
-          </widget>
           <widget class="QLabel" name="lb_roty">
            <property name="geometry">
             <rect>
              <x>310</x>
-             <y>172</y>
+             <y>232</y>
              <width>31</width>
              <height>16</height>
             </rect>
@@ -271,7 +245,7 @@
            <property name="geometry">
             <rect>
              <x>310</x>
-             <y>224</y>
+             <y>284</y>
              <width>31</width>
              <height>16</height>
             </rect>
@@ -280,12 +254,55 @@
             <string>0</string>
            </property>
           </widget>
+          <widget class="QLabel" name="lb_mov">
+           <property name="geometry">
+            <rect>
+             <x>150</x>
+             <y>30</y>
+             <width>161</width>
+             <height>20</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font: 87 12pt &quot;Arial Black&quot;;
+	color:#fff;</string>
+           </property>
+           <property name="text">
+            <string>MOVIMIENTO: 1</string>
+           </property>
+          </widget>
+          <widget class="QWidget" name="">
+           <property name="geometry">
+            <rect>
+             <x>60</x>
+             <y>370</y>
+             <width>321</width>
+             <height>25</height>
+            </rect>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
+             <widget class="QPushButton" name="bt_reset">
+              <property name="text">
+               <string>REINICIAR</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="bt_calcular">
+              <property name="text">
+               <string>CALCULAR</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
          </widget>
          <widget class="QTableWidget" name="matriz_trans">
           <property name="geometry">
            <rect>
             <x>10</x>
-            <y>390</y>
+            <y>480</y>
             <width>418</width>
             <height>151</height>
            </rect>
@@ -347,7 +364,7 @@
           <property name="geometry">
            <rect>
             <x>90</x>
-            <y>350</y>
+            <y>440</y>
             <width>271</width>
             <height>20</height>
            </rect>
