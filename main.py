@@ -14,29 +14,17 @@ class MainApp(QMainWindow):
 
         self.setWindowTitle("Gráfica 3D con PyQt5 y Matplotlib")
 
-        self.A = np.identity(4)
         self.t_matrix = np.identity(4)
-
-        self.fill_table()
-        self.rd_fijo.setChecked(True)
+        self.vector = np.array([0, 0, 0])
 
         self.is_tras = False
         self.is_rot = False
 
-        self.vector = np.array([0, 0, 0, 1])
 
-        self.iteration = 0
-        self.trasx = 0
-        self.trasy = 0
-        self.trasz = 0
+        self.set_zero()
+        self.fill_table()
+        self.rd_fijo.setChecked(True)
 
-        self.rotx = 0
-        self.roty = 0
-        self.rotz = 0
-
-        self.theta_x = 0
-        self.theta_y = 0
-        self.theta_z = 0
 
         # self.matriz_trans.setItem(1, 1,  QTableWidgetItem("2"))
 
@@ -97,6 +85,11 @@ class MainApp(QMainWindow):
                     i, j,  QTableWidgetItem(str(round(self.t_matrix[i][j], 3))))
         self.matriz_trans.resizeColumnsToContents()
 
+        for i in range(3):
+            self.vector_origen.setItem(
+                    i, 0,  QTableWidgetItem(str(round(self.vector[i], 3))))
+        self.matriz_trans.resizeColumnsToContents()
+
     def traslation(self):
         self.is_tras = True
 
@@ -121,11 +114,10 @@ class MainApp(QMainWindow):
     def reset(self):
         self.canvas.figure.clear()
         self.set_zero()
-        self.vector = np.array([0, 0, 0, 1])
         self.t_matrix = np.identity(4)
         self.lb_mov.setText("MOVIMIENTO: " + str((self.iteration+1)))
-        self.fill_table()
         self.plot_3d()
+        self.fill_table()
 
     def get_rot_x(self, event):
         self.is_rot = True
@@ -185,13 +177,9 @@ class MainApp(QMainWindow):
     def calculate(self):
         self.canvas.figure.clear()
 
-        print(self.is_tras)
-
         if (self.is_tras):
-            print("is tras")
             self.A = self.tras
         else:
-            print("is rot")
             if (self.rot_x.isEnabled()):
                 self.A = self.rotx
             elif (self.rot_y.isEnabled()):
@@ -199,8 +187,6 @@ class MainApp(QMainWindow):
             else:
                 self.A = self.rotz
 
-        print(self.A)
-        print(self.is_tras)
         if (self.rd_fijo.isChecked()):
             self.t_matrix = self.A@self.t_matrix
         else:
@@ -214,8 +200,8 @@ class MainApp(QMainWindow):
 
         self.iteration += 1
         self.lb_mov.setText("MOVIMIENTO: " + str((self.iteration+1)))
-        self.fill_table()
         self.plot_3d()
+        self.fill_table()
         self.set_zero()
 
     def plot_3d(self):
@@ -232,14 +218,12 @@ class MainApp(QMainWindow):
         ax.quiver(0, 0, 0, 0, 2, 0, color='g', label='Y')
         ax.quiver(0, 0, 0, 0, 0, 2, color='b', label='Z')
 
-        # self.vector = self.A@self.vector
-        print("hola", self.is_tras)
-        x, y, z, scale = self.t_matrix@np.array([0,0,0,1])
+        x, y, z, scale = self.t_matrix@np.array([0, 0, 0, 1])
+        self.vector = [x, y, z]
         u, v, w, scale = self.t_matrix@[1, 0, 0, 1]
         _u, _v, _w, scale = self.t_matrix@[0, 1, 0, 1]
         __u, __v, __w, scale = self.t_matrix@[0, 0, 1, 1]
 
-        print(u, " ", v, " ", w)
         ax.quiver(0, 0, 0, x, y, z, color='#7e2f8e')
 
         # Sistema de coordenadas móvil

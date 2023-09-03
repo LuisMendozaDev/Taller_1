@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1089</width>
-    <height>679</height>
+    <width>1218</width>
+    <height>903</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -78,308 +78,442 @@
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <widget class="QFrame" name="frame_4">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>10</y>
-            <width>421</width>
-            <height>411</height>
-           </rect>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>341</width>
-            <height>221</height>
-           </size>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::StyledPanel</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Raised</enum>
-          </property>
-          <widget class="QSpinBox" name="tras_x">
-           <property name="geometry">
-            <rect>
-             <x>111</x>
-             <y>150</y>
-             <width>35</width>
-             <height>18</height>
-            </rect>
-           </property>
-          </widget>
-          <widget class="QSpinBox" name="tras_y">
-           <property name="geometry">
-            <rect>
-             <x>200</x>
-             <y>150</y>
-             <width>35</width>
-             <height>18</height>
-            </rect>
-           </property>
-          </widget>
-          <widget class="QSpinBox" name="tras_z">
-           <property name="geometry">
-            <rect>
-             <x>290</x>
-             <y>150</y>
-             <width>35</width>
-             <height>18</height>
-            </rect>
-           </property>
-          </widget>
-          <widget class="QGroupBox" name="groupBox">
-           <property name="geometry">
-            <rect>
-             <x>60</x>
-             <y>80</y>
-             <width>321</width>
-             <height>50</height>
-            </rect>
-           </property>
-           <property name="title">
-            <string>EJES</string>
-           </property>
-           <layout class="QHBoxLayout" name="horizontalLayout_2">
-            <item>
-             <widget class="QRadioButton" name="rd_fijo">
-              <property name="text">
-               <string>FIJO</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QRadioButton" name="rd_movil">
-              <property name="text">
-               <string>MOVIL</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QLabel" name="lb_rotx">
-           <property name="geometry">
-            <rect>
-             <x>310</x>
-             <y>180</y>
-             <width>31</width>
-             <height>16</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>0</string>
-           </property>
-          </widget>
-          <widget class="QSlider" name="rot_x">
-           <property name="geometry">
-            <rect>
-             <x>60</x>
-             <y>200</y>
-             <width>321</width>
-             <height>22</height>
-            </rect>
-           </property>
-           <property name="minimum">
-            <number>-360</number>
-           </property>
-           <property name="maximum">
-            <number>360</number>
-           </property>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-          <widget class="QSlider" name="rot_y">
-           <property name="geometry">
-            <rect>
-             <x>60</x>
-             <y>250</y>
-             <width>321</width>
-             <height>22</height>
-            </rect>
-           </property>
-           <property name="minimum">
-            <number>-360</number>
-           </property>
-           <property name="maximum">
-            <number>360</number>
-           </property>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-          <widget class="QSlider" name="rot_z">
-           <property name="geometry">
-            <rect>
-             <x>60</x>
-             <y>300</y>
-             <width>321</width>
-             <height>22</height>
-            </rect>
-           </property>
-           <property name="minimum">
-            <number>-360</number>
-           </property>
-           <property name="maximum">
-            <number>360</number>
-           </property>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-          <widget class="QLabel" name="lb_roty">
-           <property name="geometry">
-            <rect>
-             <x>310</x>
-             <y>232</y>
-             <width>31</width>
-             <height>16</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>0</string>
-           </property>
-          </widget>
-          <widget class="QLabel" name="lb_rotz">
-           <property name="geometry">
-            <rect>
-             <x>310</x>
-             <y>284</y>
-             <width>31</width>
-             <height>16</height>
-            </rect>
-           </property>
-           <property name="text">
-            <string>0</string>
-           </property>
-          </widget>
-          <widget class="QLabel" name="lb_mov">
-           <property name="geometry">
-            <rect>
-             <x>150</x>
-             <y>30</y>
-             <width>161</width>
-             <height>20</height>
-            </rect>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 87 12pt &quot;Arial Black&quot;;
+         <layout class="QVBoxLayout" name="verticalLayout_8">
+          <item>
+           <widget class="QFrame" name="frame_4">
+            <property name="minimumSize">
+             <size>
+              <width>341</width>
+              <height>221</height>
+             </size>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_7">
+             <item>
+              <widget class="QLabel" name="lb_mov">
+               <property name="styleSheet">
+                <string notr="true">font: 87 12pt &quot;Arial Black&quot;;
 	color:#fff;</string>
-           </property>
-           <property name="text">
-            <string>MOVIMIENTO: 1</string>
-           </property>
-          </widget>
-          <widget class="QWidget" name="">
-           <property name="geometry">
-            <rect>
-             <x>60</x>
-             <y>370</y>
-             <width>321</width>
-             <height>25</height>
-            </rect>
-           </property>
-           <layout class="QHBoxLayout" name="horizontalLayout_3">
-            <item>
-             <widget class="QPushButton" name="bt_reset">
-              <property name="text">
-               <string>REINICIAR</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="bt_calcular">
-              <property name="text">
-               <string>CALCULAR</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </widget>
-         <widget class="QTableWidget" name="matriz_trans">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>480</y>
-            <width>418</width>
-            <height>151</height>
-           </rect>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>418</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>418</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <row>
-           <property name="text">
-            <string>0</string>
-           </property>
-          </row>
-          <row>
-           <property name="text">
-            <string>1</string>
-           </property>
-          </row>
-          <row>
-           <property name="text">
-            <string>2</string>
-           </property>
-          </row>
-          <row>
-           <property name="text">
-            <string>3</string>
-           </property>
-          </row>
-          <column>
-           <property name="text">
-            <string>0</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>1</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>2</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>3</string>
-           </property>
-          </column>
-         </widget>
-         <widget class="QLabel" name="label">
-          <property name="geometry">
-           <rect>
-            <x>90</x>
-            <y>440</y>
-            <width>271</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="layoutDirection">
-           <enum>Qt::LeftToRight</enum>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">font: 87 12pt &quot;Arial Black&quot;;
+               </property>
+               <property name="text">
+                <string>MOVIMIENTO: 1</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QGroupBox" name="groupBox">
+               <property name="styleSheet">
+                <string notr="true">font: 87 12pt &quot;Arial Black&quot;;
 	color:#fff;</string>
-          </property>
-          <property name="text">
-           <string>MATRIZ DE TRANSFORMACION</string>
-          </property>
-         </widget>
+               </property>
+               <property name="title">
+                <string>EJES</string>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_2">
+                <item>
+                 <widget class="QRadioButton" name="rd_fijo">
+                  <property name="text">
+                   <string>FIJO</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="rd_movil">
+                  <property name="text">
+                   <string>MOVIL</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_7">
+               <item>
+                <widget class="QFrame" name="frame_6">
+                 <property name="minimumSize">
+                  <size>
+                   <width>100</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>100</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_4">
+                  <item>
+                   <widget class="QLabel" name="label_5">
+                    <property name="text">
+                     <string>x</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QSpinBox" name="tras_x"/>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frame_7">
+                 <property name="minimumSize">
+                  <size>
+                   <width>100</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>100</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_5">
+                  <item>
+                   <widget class="QLabel" name="label_6">
+                    <property name="text">
+                     <string>y</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QSpinBox" name="tras_y"/>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frame_8">
+                 <property name="minimumSize">
+                  <size>
+                   <width>100</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>100</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_6">
+                  <item>
+                   <widget class="QLabel" name="label_7">
+                    <property name="text">
+                     <string>z</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QSpinBox" name="tras_z"/>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_4">
+               <item>
+                <widget class="QLabel" name="label_2">
+                 <property name="text">
+                  <string>Rot(x)</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="lb_rotx">
+                 <property name="text">
+                  <string>0</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QSlider" name="rot_x">
+               <property name="minimum">
+                <number>-360</number>
+               </property>
+               <property name="maximum">
+                <number>360</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_5">
+               <item>
+                <widget class="QLabel" name="label_3">
+                 <property name="text">
+                  <string>Rot(y)</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="lb_roty">
+                 <property name="text">
+                  <string>0</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QSlider" name="rot_y">
+               <property name="minimum">
+                <number>-360</number>
+               </property>
+               <property name="maximum">
+                <number>360</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_6">
+               <item>
+                <widget class="QLabel" name="label_4">
+                 <property name="text">
+                  <string>Rot(z)</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="lb_rotz">
+                 <property name="text">
+                  <string>0</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QSlider" name="rot_z">
+               <property name="minimum">
+                <number>-360</number>
+               </property>
+               <property name="maximum">
+                <number>360</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_3">
+               <item>
+                <widget class="QPushButton" name="bt_reset">
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton{
+	background-color: rgb(218, 0, 55);
+	font: 87 12pt &quot;Arial Black&quot;;
+	color:#fff;
+}
+
+QPushButton:hover{
+	background-color: #fff;
+	font: 87 12pt &quot;Arial Black&quot;;
+	color:rgb(218, 0, 55);
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>REINICIAR</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="bt_calcular">
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton{
+	background-color: rgb(44, 163, 11);
+	font: 87 12pt &quot;Arial Black&quot;;
+	color:#fff;
+}
+
+QPushButton:hover{
+	background-color: #fff;
+	font: 87 12pt &quot;Arial Black&quot;;
+	color:rgb(44, 163, 11);
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>CALCULAR</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="frame_5">
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_3">
+             <item>
+              <widget class="QLabel" name="label">
+               <property name="layoutDirection">
+                <enum>Qt::LeftToRight</enum>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">font: 87 12pt &quot;Arial Black&quot;;
+	color:#fff;</string>
+               </property>
+               <property name="text">
+                <string>MATRIZ DE TRANSFORMACION</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QTableWidget" name="matriz_trans">
+               <property name="minimumSize">
+                <size>
+                 <width>418</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>418</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="sizeAdjustPolicy">
+                <enum>QAbstractScrollArea::AdjustToContents</enum>
+               </property>
+               <row>
+                <property name="text">
+                 <string>0</string>
+                </property>
+               </row>
+               <row>
+                <property name="text">
+                 <string>1</string>
+                </property>
+               </row>
+               <row>
+                <property name="text">
+                 <string>2</string>
+                </property>
+               </row>
+               <row>
+                <property name="text">
+                 <string>3</string>
+                </property>
+               </row>
+               <column>
+                <property name="text">
+                 <string>0</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>1</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>2</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>3</string>
+                </property>
+               </column>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_8">
+               <property name="layoutDirection">
+                <enum>Qt::LeftToRight</enum>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">font: 87 12pt &quot;Arial Black&quot;;
+	color:#fff;</string>
+               </property>
+               <property name="text">
+                <string>COORDENADAS DEL ORIGEN</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QTableWidget" name="vector_origen">
+               <property name="sizeAdjustPolicy">
+                <enum>QAbstractScrollArea::AdjustToContents</enum>
+               </property>
+               <row>
+                <property name="text">
+                 <string>x</string>
+                </property>
+               </row>
+               <row>
+                <property name="text">
+                 <string>y</string>
+                </property>
+               </row>
+               <row>
+                <property name="text">
+                 <string>z</string>
+                </property>
+               </row>
+               <column>
+                <property name="text">
+                 <string>VECTOR</string>
+                </property>
+               </column>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </item>
       </layout>
