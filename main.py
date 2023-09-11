@@ -6,6 +6,8 @@ from PyQt5.QtWidgets import QApplication, QMainWindow,  QTableWidget, QTableWidg
 from PyQt5.uic import loadUi
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 
+# Taller # 1
+# Autores: Luis Fernando Mendoza Cardona - José De Jesús Caro Urueta - Angel De Jesus Tuñon Cuello
 
 class MainApp(QMainWindow):
     def __init__(self):
@@ -13,20 +15,22 @@ class MainApp(QMainWindow):
         loadUi("Grafica3D.ui", self)
 
         self.setWindowTitle("Gráfica 3D con PyQt5 y Matplotlib")
-
+        self.A = np.identity(4)
         self.t_matrix = np.identity(4)
         self.vector = np.array([0, 0, 0])
 
+        # Servirá para definir si se hizo una rotacion o una traslacion
         self.is_tras = False
         self.is_rot = False
+        # Indica la cantidad de movimientos que se han realizado
+        self.iteration = 0
 
-
+        # Inicializa todo en cero
         self.set_zero()
         self.fill_table()
+
+        # El primer movimiento se hace respecto a fijo por default pero da igual si se cambia
         self.rd_fijo.setChecked(True)
-
-
-        # self.matriz_trans.setItem(1, 1,  QTableWidgetItem("2"))
 
         # Spin para realizar traslaciones
         self.tras_x.valueChanged.connect(self.traslation)
@@ -52,7 +56,6 @@ class MainApp(QMainWindow):
 
     def set_zero(self):
         self.A = np.identity(4)
-        self.iteration = 0
         self.trasx = 0
         self.trasy = 0
         self.trasz = 0
@@ -79,12 +82,14 @@ class MainApp(QMainWindow):
         self.rot_z.setDisabled(False)
 
     def fill_table(self):
+        # Llena la tabla con los datos de la matriz de transformacion
         for i in range(4):
             for j in range(4):
                 self.matriz_trans.setItem(
                     i, j,  QTableWidgetItem(str(round(self.t_matrix[i][j], 3))))
         self.matriz_trans.resizeColumnsToContents()
 
+        # Llena la tabla con los datos del vector de origen del sistema movil respecto 
         for i in range(3):
             self.vector_origen.setItem(
                     i, 0,  QTableWidgetItem(str(round(self.vector[i], 3))))
@@ -97,29 +102,35 @@ class MainApp(QMainWindow):
         self.trasy = self.tras_y.value()
         self.trasz = self.tras_z.value()
 
+        # Crea la matriz de transformacion para la rotacion correspondiente
         self.tras = np.array([[1, 0, 0, self.trasx],
                              [0, 1, 0, self.trasy],
                              [0, 0, 1, self.trasz],
                              [0, 0, 0, 1]])
-
+        
+        # Deshabilita los slider de las rotaciones 
         self.rot_x.setDisabled(True)
         self.rot_y.setDisabled(True)
         self.rot_z.setDisabled(True)
 
     def spin_state(self, value):
+        # Funcion para deshabilitar o habilitar los spin para la traslacion
         self.tras_x.setDisabled(value)
         self.tras_y.setDisabled(value)
         self.tras_z.setDisabled(value)
 
     def reset(self):
+        # Funcion para el boton reiniciar
         self.canvas.figure.clear()
         self.set_zero()
+        self.iteration = 0
         self.t_matrix = np.identity(4)
         self.lb_mov.setText("MOVIMIENTO: " + str((self.iteration+1)))
         self.plot_3d()
         self.fill_table()
 
     def get_rot_x(self, event):
+        # Genera matriz de rotacion del eje correspondiente
         self.is_rot = True
         self.is_tras = False
         self.theta_x = np.radians(event)
@@ -135,9 +146,9 @@ class MainApp(QMainWindow):
                               [0, np.sin(self.theta_x),
                                np.cos(self.theta_x), 0],
                               [0, 0, 0, 1]])
-        # self.theta = event
 
     def get_rot_y(self, event):
+        # Genera matriz de rotacion del eje correspondiente
         self.is_rot = True
         self.is_tras = False
         self.theta_y = np.radians(event)
@@ -153,9 +164,9 @@ class MainApp(QMainWindow):
                               [-np.sin(self.theta_y), 0,
                                np.cos(self.theta_y), 0],
                               [0, 0, 0, 1]])
-        # self.theta = event
 
     def get_rot_z(self, event):
+        # Genera matriz de rotacion del eje correspondiente
         self.is_rot = True
         self.is_tras = False
         self.theta_z = np.radians(event)
@@ -172,21 +183,22 @@ class MainApp(QMainWindow):
                               [0, 0, 1, 0],
                               [0, 0, 0, 1]])
 
-        # self.theta = event
-
     def calculate(self):
+        # Limpia la grafica
         self.canvas.figure.clear()
 
+        # Determina si es traslacion o rotacion
         if (self.is_tras):
             self.A = self.tras
         else:
+        # Determina con respecto a que eje se hizo la rotacion
             if (self.rot_x.isEnabled()):
                 self.A = self.rotx
             elif (self.rot_y.isEnabled()):
                 self.A = self.roty
             else:
                 self.A = self.rotz
-
+        # Determina si el movimiento se hace respecto al eje fijo o al eje movil
         if (self.rd_fijo.isChecked()):
             self.t_matrix = self.A@self.t_matrix
         else:
@@ -199,7 +211,7 @@ class MainApp(QMainWindow):
         self.spin_state(False)
 
         self.iteration += 1
-        self.lb_mov.setText("MOVIMIENTO: " + str((self.iteration+1)))
+        self.lb_mov.setText("MOVIMIENTO: " + str(self.iteration+1))
         self.plot_3d()
         self.fill_table()
         self.set_zero()
@@ -209,9 +221,9 @@ class MainApp(QMainWindow):
         ax = fig.add_subplot(111, projection='3d')
 
         # Definir límites de los ejes
-        ax.set_xlim(-10, 10)
-        ax.set_ylim(-10, 10)
-        ax.set_zlim(-10, 10)
+        ax.set_xlim(-5, 5)
+        ax.set_ylim(-5, 5)
+        ax.set_zlim(-5, 5)
 
         # Sistema de coordenadas fijo
         ax.quiver(0, 0, 0, 2, 0, 0, color='r', label='X')

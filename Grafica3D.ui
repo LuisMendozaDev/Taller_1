@@ -70,6 +70,7 @@
          <property name="styleSheet">
           <string notr="true">QFrame{
 	background-color: #69d2e7;
+font: 50 12pt &quot;Arial&quot;
 }</string>
          </property>
          <property name="frameShape">
@@ -166,7 +167,14 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QSpinBox" name="tras_x"/>
+                   <widget class="QSpinBox" name="tras_x">
+                    <property name="styleSheet">
+                     <string notr="true">font: 50 12pt &quot;Arial&quot;</string>
+                    </property>
+                    <property name="minimum">
+                     <number>-99</number>
+                    </property>
+                   </widget>
                   </item>
                  </layout>
                 </widget>
@@ -194,13 +202,23 @@
                  <layout class="QVBoxLayout" name="verticalLayout_5">
                   <item>
                    <widget class="QLabel" name="label_6">
+                    <property name="styleSheet">
+                     <string notr="true">font: 50 12pt &quot;Arial&quot;</string>
+                    </property>
                     <property name="text">
                      <string>y</string>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QSpinBox" name="tras_y"/>
+                   <widget class="QSpinBox" name="tras_y">
+                    <property name="styleSheet">
+                     <string notr="true">font: 50 12pt &quot;Arial&quot;</string>
+                    </property>
+                    <property name="minimum">
+                     <number>-99</number>
+                    </property>
+                   </widget>
                   </item>
                  </layout>
                 </widget>
@@ -228,13 +246,23 @@
                  <layout class="QVBoxLayout" name="verticalLayout_6">
                   <item>
                    <widget class="QLabel" name="label_7">
+                    <property name="styleSheet">
+                     <string notr="true">font: 50 12pt &quot;Arial&quot;</string>
+                    </property>
                     <property name="text">
                      <string>z</string>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QSpinBox" name="tras_z"/>
+                   <widget class="QSpinBox" name="tras_z">
+                    <property name="styleSheet">
+                     <string notr="true">font: 50 12pt &quot;Arial&quot;</string>
+                    </property>
+                    <property name="minimum">
+                     <number>-99</number>
+                    </property>
+                   </widget>
                   </item>
                  </layout>
                 </widget>
@@ -409,6 +437,9 @@ QPushButton:hover{
              </item>
              <item>
               <widget class="QTableWidget" name="matriz_trans">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="minimumSize">
                 <size>
                  <width>418</width>
@@ -420,6 +451,9 @@ QPushButton:hover{
                  <width>418</width>
                  <height>16777215</height>
                 </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">font: 50 12pt &quot;Arial Black&quot;;</string>
                </property>
                <property name="sizeAdjustPolicy">
                 <enum>QAbstractScrollArea::AdjustToContents</enum>
@@ -485,6 +519,12 @@ QPushButton:hover{
              </item>
              <item>
               <widget class="QTableWidget" name="vector_origen">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">font: 50 12pt &quot;Arial Black&quot;;</string>
+               </property>
                <property name="sizeAdjustPolicy">
                 <enum>QAbstractScrollArea::AdjustToContents</enum>
                </property>
